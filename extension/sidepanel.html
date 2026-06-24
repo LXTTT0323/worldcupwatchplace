@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WorldCupWatchPlace</title>
+    <link rel="stylesheet" href="styles.css?v=10">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">WorldCupWatchPlace</p>
+          <h1>Find a reliable match spot</h1>
+        </div>
+        <div class="live-dot" title="Live recommendation mode"></div>
+      </header>
+
+      <section class="context-strip" id="contextStrip">
+        <span class="context-label">Context</span>
+        <span id="contextText">Open on Google Search or Maps, then click refresh.</span>
+        <button class="icon-button" id="refreshContext" title="Refresh page context">R</button>
+      </section>
+
+      <section class="context-strip data-strip">
+        <span class="context-label">Data</span>
+        <span id="dataText">Connecting to live data...</span>
+        <button class="icon-button" id="refreshData" title="Refresh live data">R</button>
+      </section>
+
+      <section class="controls">
+        <label>
+          Match
+          <select id="matchSelect"></select>
+        </label>
+        <label>
+          Sort
+          <select id="sortSelect">
+            <option value="recommended">Recommended</option>
+            <option value="distance">Nearest</option>
+          </select>
+        </label>
+        <label>
+          Venue type
+          <select id="categorySelect">
+            <option value="all">All watch spots</option>
+            <option value="sports_bar">Sports bar</option>
+            <option value="restaurant">Restaurants</option>
+            <option value="chinese">Chinese</option>
+            <option value="italian">Italian</option>
+            <option value="korean">Korean</option>
+            <option value="izakaya">Japanese / Izakaya</option>
+            <option value="mexican">Mexican</option>
+            <option value="indian">Indian</option>
+            <option value="thai_viet">Thai / Vietnamese</option>
+            <option value="cafe">Cafe / light food</option>
+            <option value="western">American / Western</option>
+            <option value="public_screen">Public big screen</option>
+          </select>
+        </label>
+        <div class="location-control">
+          <div class="location-head">
+            <span>Location</span>
+            <button class="nearby-button" id="nearbyButton" type="button">Near me</button>
+          </div>
+          <div class="location-search">
+            <input id="locationInput" value="San Francisco, CA" autocomplete="off" aria-label="Search any city or address">
+            <button id="searchLocation" type="button">Search</button>
+          </div>
+          <p class="location-note" id="locationNote">Using manual location</p>
+        </div>
+      </section>
+
+      <section class="filters" aria-label="Recommendation filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="confirmed">Confirmed</button>
+        <button class="filter" data-filter="reservable">Reserve</button>
+        <button class="filter" data-filter="open">Open</button>
+      </section>
+
+      <section class="summary">
+        <div>
+          <strong id="resultCount">0</strong>
+          <span>recommended places</span>
+        </div>
+        <div>
+          <strong id="confirmedCount">0</strong>
+          <span>confirmed</span>
+        </div>
+        <div>
+          <strong id="passStatus">Locked</strong>
+          <span>Insights</span>
+        </div>
+      </section>
+
+      <section class="watch-list" id="watchListPanel" hidden>
+        <div class="watch-list-head">
+          <p class="eyebrow">My Watch List</p>
+          <button id="clearWatchList" type="button">Clear</button>
+        </div>
+        <div id="watchListItems"></div>
+      </section>
+
+      <section class="list" id="venueList"></section>
+
+      <section class="insights" id="insightsPanel">
+        <div>
+          <p class="eyebrow">Contributor Pass</p>
+          <h2>Share one useful signal to unlock 24h insights</h2>
+        </div>
+        <div class="insight-grid">
+          <span>City demand</span>
+          <strong>High</strong>
+          <span>Hardest match</span>
+          <strong>Argentina vs France</strong>
+          <span>Most saved area</span>
+          <strong>Mission</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="mock_data.js"></script>
+    <script src="config.js?v=13"></script>
+    <div class="modal-backdrop" id="callModal" hidden>
+      <section class="call-modal" role="dialog" aria-modal="true" aria-labelledby="callVenueName">
+        <button class="modal-close" id="closeCallModal" type="button">Close</button>
+        <p class="eyebrow">Call venue</p>
+        <h2 id="callVenueName">Venue</h2>
+        <p class="call-phone" id="callPhoneNumber"></p>
+        <div class="modal-actions">
+          <button id="copyPhone" type="button">Copy</button>
+          <a id="phoneAppLink" href="#">Phone app</a>
+          <button id="calledVenue" type="button">I called</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="sidepanel.js?v=14"></script>
+  </body>
+</html>
